@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:planit/features/auth/pages/signup_page.dart';
+import 'package:planit/features/auth/pages/login_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -53,7 +53,7 @@ class MyApp extends StatelessWidget {
         ),
         useMaterial3: true,
       ),
-      home: SignupPage(),
+      home: LoginPage(),
     );
   }
 }
