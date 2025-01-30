@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:planit/features/auth/cubit/auth_cubit.dart';
+import 'package:planit/features/auth/home/pages/home_page.dart';
 import 'package:planit/features/auth/pages/signup_page.dart';
 
 class LoginPage extends StatefulWidget {
@@ -46,10 +47,10 @@ class _LoginPageState extends State<LoginPage> {
               ),
             );
           } else if (state is AuthLoggedIn) {
-            ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(
-                content: Text('You are logged in!'),
-              ),
+            Navigator.pushAndRemoveUntil(
+              context,
+              HomePage.route(),
+              (_) => false,
             );
           }
         },

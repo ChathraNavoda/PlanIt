@@ -1,5 +1,7 @@
 {
     "cSpell.words": [
-        "planit"
-    ]
+        "planit",
+        "prefs"
+    ],
+    "java.configuration.updateBuildConfiguration": "interactive"
 }
