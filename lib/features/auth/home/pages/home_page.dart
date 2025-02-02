@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:planit/core/constants/utils.dart';
+import 'package:planit/features/auth/home/widgets/date_selector.dart';
 import 'package:planit/features/auth/home/widgets/task_card.dart';
 
 class HomePage extends StatelessWidget {
@@ -23,6 +24,7 @@ class HomePage extends StatelessWidget {
       ),
       body: Column(
         children: [
+          DateSelector(),
           Row(
             children: [
               Expanded(
