@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 import 'package:planit/features/auth/cubit/auth_cubit.dart';
-import 'package:planit/features/auth/home/cubit/add_new_task_cubit.dart';
+import 'package:planit/features/auth/home/cubit/tasks_cubit.dart';
 
 class AddNewTaskPage extends StatefulWidget {
   static MaterialPageRoute route() =>
@@ -24,7 +24,7 @@ class _AddNewTaskPageState extends State<AddNewTaskPage> {
   void createNewTask() async {
     if (formKey.currentState!.validate()) {
       AuthLoggedIn user = context.read<AuthCubit>().state as AuthLoggedIn;
-      await context.read<AddNewTaskCubit>().createNewTask(
+      await context.read<TasksCubit>().createNewTask(
             title: titleController.text.trim(),
             description: descriptionController.text.trim(),
             color: selectedColor,
@@ -72,9 +72,9 @@ class _AddNewTaskPageState extends State<AddNewTaskPage> {
           ),
         ],
       ),
-      body: BlocConsumer<AddNewTaskCubit, AddNewTaskState>(
+      body: BlocConsumer<TasksCubit, TasksState>(
         listener: (context, state) {
-          if (state is AddNewTaskError) {
+          if (state is TasksError) {
             ScaffoldMessenger.of(context).showSnackBar(
               SnackBar(
                 content: Text(state.error),
@@ -90,7 +90,7 @@ class _AddNewTaskPageState extends State<AddNewTaskPage> {
           }
         },
         builder: (context, state) {
-          if (state is AddNewTaskLoading) {
+          if (state is TasksLoading) {
             return Center(
               child: CircularProgressIndicator(),
             );

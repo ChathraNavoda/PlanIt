@@ -4,10 +4,10 @@ import 'package:planit/core/constants/utils.dart';
 import 'package:planit/features/auth/home/repository/task_remote_repository.dart';
 import 'package:planit/models/task_model.dart';
 
-part 'add_new_task_state.dart';
+part 'tasks_state.dart';
 
-class AddNewTaskCubit extends Cubit<AddNewTaskState> {
-  AddNewTaskCubit() : super(AddNewTaskInitial());
+class TasksCubit extends Cubit<TasksState> {
+  TasksCubit() : super(TasksInitial());
   final taskRemoteRepository = TaskRemoteRepository();
   Future<void> createNewTask({
     required String title,
@@ -17,7 +17,7 @@ class AddNewTaskCubit extends Cubit<AddNewTaskState> {
     required DateTime dueAt,
   }) async {
     try {
-      emit(AddNewTaskLoading());
+      emit(TasksLoading());
       final taskModel = await taskRemoteRepository.createTask(
           title: title,
           description: description,
@@ -26,7 +26,7 @@ class AddNewTaskCubit extends Cubit<AddNewTaskState> {
           dueAt: dueAt);
       emit(AddNewTaskSuccess(taskModel));
     } catch (e) {
-      emit(AddNewTaskError(e.toString()));
+      emit(TasksError(e.toString()));
     }
   }
 }
