@@ -1,9 +1,13 @@
 import 'dart:convert';
 
+import 'package:flutter/material.dart';
+import 'package:planit/core/constants/utils.dart';
+
 class TaskModel {
   final String id;
   final String uid;
   final String title;
+  final Color color;
   final String description;
   final DateTime createdAt;
   final DateTime updatedAt;
@@ -12,6 +16,7 @@ class TaskModel {
     required this.id,
     required this.uid,
     required this.title,
+    required this.color,
     required this.description,
     required this.createdAt,
     required this.updatedAt,
@@ -22,6 +27,7 @@ class TaskModel {
     String? id,
     String? uid,
     String? title,
+    Color? color,
     String? description,
     DateTime? createdAt,
     DateTime? updatedAt,
@@ -31,6 +37,7 @@ class TaskModel {
       id: id ?? this.id,
       uid: uid ?? this.uid,
       title: title ?? this.title,
+      color: color ?? this.color,
       description: description ?? this.description,
       createdAt: createdAt ?? this.createdAt,
       updatedAt: updatedAt ?? this.updatedAt,
@@ -43,6 +50,7 @@ class TaskModel {
       'id': id,
       'uid': uid,
       'title': title,
+      'color': rgbToHex(color),
       'description': description,
       'createdAt': createdAt.millisecondsSinceEpoch,
       'updatedAt': updatedAt.millisecondsSinceEpoch,
@@ -55,6 +63,7 @@ class TaskModel {
       id: map['id'] ?? '',
       uid: map['uid'] ?? '',
       title: map['title'] ?? '',
+      color: hexToRgb(map['hexColor']),
       description: map['description'] ?? '',
       createdAt: DateTime.parse(map['createdAt']),
       updatedAt: DateTime.parse(map['updatedAt']),
@@ -69,7 +78,7 @@ class TaskModel {
 
   @override
   String toString() {
-    return 'TaskModel(id: $id, uid: $uid, title: $title, description: $description, createdAt: $createdAt, updatedAt: $updatedAt, dueAt: $dueAt)';
+    return 'TaskModel(id: $id, uid: $uid, title: $title, color: $color, description: $description, createdAt: $createdAt, updatedAt: $updatedAt, dueAt: $dueAt)';
   }
 
   @override
@@ -79,6 +88,7 @@ class TaskModel {
     return other.id == id &&
         other.uid == uid &&
         other.title == title &&
+        other.color == color &&
         other.description == description &&
         other.createdAt == createdAt &&
         other.updatedAt == updatedAt &&
@@ -90,6 +100,7 @@ class TaskModel {
     return id.hashCode ^
         uid.hashCode ^
         title.hashCode ^
+        color.hashCode ^
         description.hashCode ^
         createdAt.hashCode ^
         updatedAt.hashCode ^

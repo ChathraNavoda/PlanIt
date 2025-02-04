@@ -18,3 +18,8 @@ final class AddNewTaskSuccess extends TasksState {
   final TaskModel taskModel;
   const AddNewTaskSuccess(this.taskModel);
 }
+
+final class GetTasksSuccess extends TasksState {
+  final List<TaskModel> tasks;
+  const GetTasksSuccess(this.tasks);
+}
