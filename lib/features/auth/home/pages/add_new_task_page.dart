@@ -80,7 +80,7 @@ class _AddNewTaskPageState extends State<AddNewTaskPage> {
                 content: Text(state.error),
               ),
             );
-          } else if (state is AddNewTaskSuccess) {
+          } else if (state is GetTasksSuccess) {
             ScaffoldMessenger.of(context).showSnackBar(
               SnackBar(
                 content: Text('Task added successfully!'),

@@ -9,7 +9,6 @@ part 'tasks_state.dart';
 class TasksCubit extends Cubit<TasksState> {
   TasksCubit() : super(TasksInitial());
   final taskRemoteRepository = TaskRemoteRepository();
-
   Future<void> createNewTask({
     required String title,
     required String description,
@@ -19,13 +18,14 @@ class TasksCubit extends Cubit<TasksState> {
   }) async {
     try {
       emit(TasksLoading());
-      final taskModel = await taskRemoteRepository.createTask(
-          title: title,
-          description: description,
-          hexColor: rgbToHex(color),
-          token: token,
-          dueAt: dueAt);
-      emit(AddNewTaskSuccess(taskModel));
+      await taskRemoteRepository.createTask(
+        title: title,
+        description: description,
+        hexColor: rgbToHex(color),
+        token: token,
+        dueAt: dueAt,
+      );
+      await getAllTasks(token: token);
     } catch (e) {
       emit(TasksError(e.toString()));
     }
