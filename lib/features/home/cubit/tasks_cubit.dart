@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:planit/core/constants/utils.dart';
-import 'package:planit/features/auth/home/repository/task_remote_repository.dart';
+import 'package:planit/features/home/repository/task_remote_repository.dart';
 import 'package:planit/models/task_model.dart';
 
 part 'tasks_state.dart';

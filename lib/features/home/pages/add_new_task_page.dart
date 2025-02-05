@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 import 'package:planit/features/auth/cubit/auth_cubit.dart';
-import 'package:planit/features/auth/home/cubit/tasks_cubit.dart';
+import 'package:planit/features/home/cubit/tasks_cubit.dart';
 
 class AddNewTaskPage extends StatefulWidget {
   static MaterialPageRoute route() =>

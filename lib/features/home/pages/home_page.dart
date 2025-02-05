@@ -4,10 +4,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 import 'package:planit/core/constants/utils.dart';
 import 'package:planit/features/auth/cubit/auth_cubit.dart';
-import 'package:planit/features/auth/home/cubit/tasks_cubit.dart';
-import 'package:planit/features/auth/home/pages/add_new_task_page.dart';
-import 'package:planit/features/auth/home/widgets/date_selector.dart';
-import 'package:planit/features/auth/home/widgets/task_card.dart';
+import 'package:planit/features/home/cubit/tasks_cubit.dart';
+import 'package:planit/features/home/pages/add_new_task_page.dart';
+import 'package:planit/features/home/widgets/date_selector.dart';
+import 'package:planit/features/home/widgets/task_card.dart';
 
 class HomePage extends StatefulWidget {
   static MaterialPageRoute route() =>
