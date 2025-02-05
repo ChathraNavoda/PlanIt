@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:planit/core/constants/utils.dart';
+import 'package:planit/features/home/repository/task_local_repository.dart';
 import 'package:planit/features/home/repository/task_remote_repository.dart';
 import 'package:planit/models/task_model.dart';
 
@@ -9,6 +10,8 @@ part 'tasks_state.dart';
 class TasksCubit extends Cubit<TasksState> {
   TasksCubit() : super(TasksInitial());
   final taskRemoteRepository = TaskRemoteRepository();
+  final taskLocalRepository = TaskLocalRepository();
+
   Future<void> createNewTask({
     required String title,
     required String description,
@@ -18,13 +21,19 @@ class TasksCubit extends Cubit<TasksState> {
   }) async {
     try {
       emit(TasksLoading());
-      await taskRemoteRepository.createTask(
+
+      final taskModel = await taskRemoteRepository.createTask(
         title: title,
         description: description,
         hexColor: rgbToHex(color),
         token: token,
         dueAt: dueAt,
       );
+
+      // Store task locally
+      await taskLocalRepository.insertTask(taskModel);
+
+      // Fetch updated tasks
       await getAllTasks(token: token);
     } catch (e) {
       emit(TasksError(e.toString()));

@@ -52,9 +52,9 @@ class TaskModel {
       'title': title,
       'color': rgbToHex(color),
       'description': description,
-      'createdAt': createdAt.millisecondsSinceEpoch,
-      'updatedAt': updatedAt.millisecondsSinceEpoch,
-      'dueAt': dueAt.millisecondsSinceEpoch,
+      'createdAt': createdAt.toIso8601String(),
+      'updatedAt': updatedAt.toIso8601String(),
+      'dueAt': dueAt.toIso8601String(),
     };
   }
 

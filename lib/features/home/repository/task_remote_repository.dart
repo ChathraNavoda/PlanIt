@@ -2,9 +2,12 @@ import 'dart:convert';
 
 import 'package:http/http.dart' as http;
 import 'package:planit/core/constants/constants.dart';
+import 'package:planit/features/home/repository/task_local_repository.dart';
 import 'package:planit/models/task_model.dart';
 
 class TaskRemoteRepository {
+  final taskLocalRepository = TaskLocalRepository();
+
   Future<TaskModel> createTask({
     required String title,
     required String description,
@@ -56,6 +59,10 @@ class TaskRemoteRepository {
       }
       return tasksList;
     } catch (e) {
+      final tasks = await taskLocalRepository.getTasks();
+      if (tasks.isNotEmpty) {
+        return tasks;
+      }
       rethrow;
     }
   }
